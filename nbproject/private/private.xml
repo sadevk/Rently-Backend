@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/UpdateProfile.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Payments.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Category.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/model/HibernateUtil.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/hibernate.cfg.xml</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/SignIn.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/nbproject/project.properties</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Product.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/Test.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/PlaceOrder.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Payment_Status.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/SignUp.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/User_Status.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/nbproject/project.xml</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/User.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Rentals.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadDiscover.java</file>
+        </group>
+    </open-files>
+</project-private>
