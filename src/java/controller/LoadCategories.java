@@ -6,8 +6,8 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import entity.Category;
 import entity.Product;
-import entity.User;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -18,50 +18,31 @@ import javax.servlet.http.HttpServletResponse;
 import model.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author sadev_vr38
  */
-@WebServlet(name = "LoadDiscover", urlPatterns = {"/LoadDiscover"})
-public class LoadDiscover extends HttpServlet {
+@WebServlet(name = "LoadCategories", urlPatterns = {"/LoadCategories"})
+public class LoadCategories extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Gson gson = new Gson();
-        User requestUser = gson.fromJson(req.getReader(), User.class);
-        
         JsonObject responseJson = new JsonObject();
-
         responseJson.addProperty("success", Boolean.FALSE);
         
         Session session = HibernateUtil.getSessionFactory().openSession();
-        
-        Criteria criteria =  session.createCriteria(Product.class);
-        
-        criteria.add(Restrictions.not(Restrictions.eq("owner", requestUser)));
+        Criteria criteria =  session.createCriteria(Category.class);
         
         if(!criteria.list().isEmpty()){
-            
-            List<Product> products = criteria.list();
-            
-            for (Product product : products) {
-                
-                User user = product.getOwner();
-                user.setPassword(null);
-                user.setStatus(null);
-                
-                
-            }
+            List<Category> categories = criteria.list();
             responseJson.addProperty("success", Boolean.TRUE);
-            responseJson.add("products", gson.toJsonTree(products));
-            
+            responseJson.add("categories", gson.toJsonTree(categories));
         }
         
         resp.setContentType("application/json");
         resp.getWriter().write(gson.toJson(responseJson));
-        
     }
-
+    
 }

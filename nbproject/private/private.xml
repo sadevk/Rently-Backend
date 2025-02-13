@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/AddListing.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/UpdateProfile.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Payments.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadCategories.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Category.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/model/HibernateUtil.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/hibernate.cfg.xml</file>
@@ -16,6 +18,7 @@
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Payment_Status.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/SignUp.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/User_Status.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadMyListings.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/nbproject/project.xml</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/User.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Rentals.java</file>

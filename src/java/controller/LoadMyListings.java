@@ -9,6 +9,7 @@ import com.google.gson.JsonObject;
 import entity.Product;
 import entity.User;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,8 +25,8 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author sadev_vr38
  */
-@WebServlet(name = "LoadDiscover", urlPatterns = {"/LoadDiscover"})
-public class LoadDiscover extends HttpServlet {
+@WebServlet(name = "LoadMyListings", urlPatterns = {"/LoadMyListings"})
+public class LoadMyListings extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,7 +41,7 @@ public class LoadDiscover extends HttpServlet {
         
         Criteria criteria =  session.createCriteria(Product.class);
         
-        criteria.add(Restrictions.not(Restrictions.eq("owner", requestUser)));
+        criteria.add(Restrictions.eq("owner", requestUser));
         
         if(!criteria.list().isEmpty()){
             
@@ -61,7 +62,6 @@ public class LoadDiscover extends HttpServlet {
         
         resp.setContentType("application/json");
         resp.getWriter().write(gson.toJson(responseJson));
-        
     }
-
+    
 }
