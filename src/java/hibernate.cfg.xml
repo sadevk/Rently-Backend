@@ -9,7 +9,7 @@
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.show_sql">true</property>
     <mapping class="entity.Category"/>
-    <mapping class="entity.Payment_Status"/>
+    <mapping class="entity.Rental_Status"/>
     <mapping class="entity.Payments"/>
     <mapping class="entity.Product"/>
     <mapping class="entity.Rentals"/>

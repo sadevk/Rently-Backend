@@ -5,8 +5,12 @@
 package controller;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import entity.Product;
+import entity.Rental_Status;
+import entity.Rentals;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -32,36 +37,56 @@ public class LoadMyListings extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Gson gson = new Gson();
         User requestUser = gson.fromJson(req.getReader(), User.class);
-        
+
         JsonObject responseJson = new JsonObject();
 
         responseJson.addProperty("success", Boolean.FALSE);
-        
+
         Session session = HibernateUtil.getSessionFactory().openSession();
         
-        Criteria criteria =  session.createCriteria(Product.class);
+        Rental_Status statusOngoing = (Rental_Status)session.load(Rental_Status.class, 2);
+
+        Criteria criteriaProduct = session.createCriteria(Product.class);
+
+        criteriaProduct.add(Restrictions.eq("owner", requestUser));
         
-        criteria.add(Restrictions.eq("owner", requestUser));
-        
-        if(!criteria.list().isEmpty()){
-            
-            List<Product> products = criteria.list();
-            
+        JsonArray listingArray = new JsonArray();
+
+        if (!criteriaProduct.list().isEmpty()) {
+
+            List<Product> products = criteriaProduct.list();
+
             for (Product product : products) {
-                
+
                 User user = product.getOwner();
                 user.setPassword(null);
                 user.setStatus(null);
                 
+                JsonObject productJson = gson.fromJson(gson.toJsonTree(product),JsonObject.class);
+
+                Criteria criteriaRental = session.createCriteria(Rentals.class);
+                criteriaRental.add(Restrictions.eq("product", product));
+                criteriaRental.add(Restrictions.eq("rental_status", statusOngoing));
                 
+                if (criteriaRental.list().isEmpty()) {
+                    productJson.addProperty("ongoing", Boolean.FALSE);
+                    System.out.println("Not");
+                }else{
+                    productJson.addProperty("ongoing", Boolean.TRUE);
+                    System.out.println("Yes");
+                }
+                
+                listingArray.add(productJson);
+                
+
             }
             responseJson.addProperty("success", Boolean.TRUE);
-            responseJson.add("products", gson.toJsonTree(products));
-            
+            responseJson.add("products", gson.toJsonTree(listingArray));
+
         }
-        
+
         resp.setContentType("application/json");
         resp.getWriter().write(gson.toJson(responseJson));
     }
-    
+
 }

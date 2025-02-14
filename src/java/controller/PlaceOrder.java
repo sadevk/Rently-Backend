@@ -6,7 +6,7 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import entity.Payment_Status;
+import entity.Rental_Status;
 import entity.Product;
 import entity.Rentals;
 import entity.User;
@@ -55,14 +55,14 @@ public class PlaceOrder extends HttpServlet {
         Transaction transaction = session.beginTransaction();
 
         Rentals rentals = new Rentals();
-        Payment_Status status = (Payment_Status) session.load(Payment_Status.class, 1);
         Product product = (Product) session.load(Product.class, requestJson.get("product").getAsInt());
+        Rental_Status rental_Status = (Rental_Status) session.load(Rental_Status.class, 2);
 
         rentals.setUser(reqUser);
         rentals.setProduct(product);
-        rentals.setPayment_Status(status);
         rentals.setStart_date(startDate);
         rentals.setEnd_date(endDate);
+        rentals.setRental_status(rental_Status);
         rentals.setTotal(requestJson.get("total").getAsDouble());
 
         try {
