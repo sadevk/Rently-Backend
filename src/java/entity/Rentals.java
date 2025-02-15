@@ -41,10 +41,6 @@ public class Rentals implements Serializable{
     @Column(name = "end_date", nullable = false)
     private Date end_date;
     
-    @ManyToOne
-    @JoinColumn(name = "rental_status_id")
-    private Rental_Status rental_status;
-    
     @Column(name = "total", nullable = false)
     private double total;
 
@@ -86,14 +82,6 @@ public class Rentals implements Serializable{
 
     public void setEnd_date(Date end_date) {
         this.end_date = end_date;
-    }
-
-    public Rental_Status getRental_status() {
-        return rental_status;
-    }
-
-    public void setRental_status(Rental_Status rental_status) {
-        this.rental_status = rental_status;
     }
 
     public double getTotal() {

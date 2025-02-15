@@ -9,11 +9,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import entity.Product;
-import entity.Rental_Status;
 import entity.Rentals;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,8 +43,6 @@ public class LoadMyListings extends HttpServlet {
         responseJson.addProperty("success", Boolean.FALSE);
 
         Session session = HibernateUtil.getSessionFactory().openSession();
-        
-        Rental_Status statusOngoing = (Rental_Status)session.load(Rental_Status.class, 2);
 
         Criteria criteriaProduct = session.createCriteria(Product.class);
 
@@ -66,14 +64,12 @@ public class LoadMyListings extends HttpServlet {
 
                 Criteria criteriaRental = session.createCriteria(Rentals.class);
                 criteriaRental.add(Restrictions.eq("product", product));
-                criteriaRental.add(Restrictions.eq("rental_status", statusOngoing));
+                criteriaRental.add(Restrictions.gt("end_date",new Date()));
                 
                 if (criteriaRental.list().isEmpty()) {
                     productJson.addProperty("ongoing", Boolean.FALSE);
-                    System.out.println("Not");
                 }else{
                     productJson.addProperty("ongoing", Boolean.TRUE);
-                    System.out.println("Yes");
                 }
                 
                 listingArray.add(productJson);
