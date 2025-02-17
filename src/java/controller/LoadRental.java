@@ -6,11 +6,10 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import entity.Rentals;
-import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,34 +24,33 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author sadev_vr38
  */
-@WebServlet(name = "CheckForOngoingRentals", urlPatterns = {"/CheckForOngoingRentals"})
-public class CheckForOngoingRentals extends HttpServlet {
+@WebServlet(name = "LoadRental", urlPatterns = {"/LoadRental"})
+public class LoadRental extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Gson gson = new Gson();
-        
-        User requestUser = gson.fromJson(req.getReader(), User.class);
-
+        JsonObject requestJson = gson.fromJson(req.getReader(), JsonObject.class);
         JsonObject responseJson = new JsonObject();
-
         Session session = HibernateUtil.getSessionFactory().openSession();
-        
+        responseJson.addProperty("found", Boolean.FALSE);
+
         Criteria criteria = session.createCriteria(Rentals.class);
-        criteria.add(Restrictions.eq("user", requestUser));
-        criteria.add(Restrictions.gt("end_date", new Date()));
+        criteria.add(Restrictions.eq("id", requestJson.get("id").getAsInt()));
         
-        if(!criteria.list().isEmpty()){
-            responseJson.addProperty("available", Boolean.TRUE);
-        }else{
-            responseJson.addProperty("available", Boolean.FALSE);
-        }
+        Rentals rental = (Rentals)criteria.uniqueResult();
         
+        rental.getProduct().getOwner().setPassword(null);
+        rental.getProduct().getOwner().setStatus(null);
+        rental.getUser().setPassword(null);
+        rental.getUser().setStatus(null);
         
+        responseJson.addProperty("found", Boolean.TRUE);
+        responseJson.add("rental", gson.toJsonTree(rental));
         
         resp.setContentType("application/json");
         resp.getWriter().write(gson.toJson(responseJson));
-        
+
     }
-    
+
 }

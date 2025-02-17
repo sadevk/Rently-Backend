@@ -55,10 +55,8 @@ public class LoadMyListings extends HttpServlet {
             List<Product> products = criteriaProduct.list();
 
             for (Product product : products) {
-
-                User user = product.getOwner();
-                user.setPassword(null);
-                user.setStatus(null);
+                
+                product.setOwner(null);
                 
                 JsonObject productJson = gson.fromJson(gson.toJsonTree(product),JsonObject.class);
 
@@ -69,7 +67,15 @@ public class LoadMyListings extends HttpServlet {
                 if (criteriaRental.list().isEmpty()) {
                     productJson.addProperty("ongoing", Boolean.FALSE);
                 }else{
+                    
+                    Rentals rentals = (Rentals)criteriaRental.list().get(0);
+                    User user = rentals.getUser();
+                    user.setPassword(null);
+                    user.setStatus(null);
+                    
                     productJson.addProperty("ongoing", Boolean.TRUE);
+                    productJson.add("user", gson.toJsonTree(user));
+                    
                 }
                 
                 listingArray.add(productJson);

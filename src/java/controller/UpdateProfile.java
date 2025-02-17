@@ -46,21 +46,21 @@ public class UpdateProfile extends HttpServlet {
 
         try {
 
-            session.update(updatedUser);
-            transaction.commit();
-
             File profileImageDir = new File(BASE_URL + File.separator + "profile-images");
-            
-            if(!profileImageDir.exists()){
+
+            if (!profileImageDir.exists()) {
                 profileImageDir.mkdir();
             }
 
-            if (imagePart.getName().equals("image") && imagePart.getSubmittedFileName() != null) {
-                String fileName = "profile_"+updatedUser.getId()+".png";
+            if (imagePart != null && imagePart.getName().equals("image") && imagePart.getSubmittedFileName() != null) {
+                String fileName = "profile_" + updatedUser.getId() + ".png";
                 InputStream inputStream = imagePart.getInputStream();
-                File imgFile = new File(profileImageDir,fileName);
-                Files.copy(inputStream, imgFile.toPath(),StandardCopyOption.REPLACE_EXISTING);
+                File imgFile = new File(profileImageDir, fileName);
+                Files.copy(inputStream, imgFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             }
+
+            session.update(updatedUser);
+            transaction.commit();
 
             responseJson.addProperty("success", Boolean.TRUE);
             responseJson.addProperty("message", "Updated Successfully!");
