@@ -43,6 +43,10 @@ public class Rentals implements Serializable{
     
     @Column(name = "total", nullable = false)
     private double total;
+    
+    @ManyToOne
+    @JoinColumn(name = "notified_status_id")
+    private Notified_Status notified_status;
 
     public int getId() {
         return id;
@@ -90,5 +94,13 @@ public class Rentals implements Serializable{
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public Notified_Status getNotified_status() {
+        return notified_status;
+    }
+
+    public void setNotified_status(Notified_Status notified_status) {
+        this.notified_status = notified_status;
     }
 }

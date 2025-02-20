@@ -15,6 +15,7 @@
             <file>file:/Users/sadev_vr38/Developer/Rently/nbproject/project.properties</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Product.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/Test.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadRental.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/PlaceOrder.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/SignUp.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/User_Status.java</file>
@@ -25,6 +26,7 @@
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/CheckForOngoingRentals.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Rentals.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadDiscover.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Notified_Status.java</file>
         </group>
     </open-files>
 </project-private>
