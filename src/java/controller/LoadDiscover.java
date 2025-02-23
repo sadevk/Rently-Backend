@@ -7,6 +7,7 @@ package controller;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import entity.Product;
+import entity.Product_status;
 import entity.User;
 import java.io.IOException;
 import java.util.List;
@@ -38,9 +39,11 @@ public class LoadDiscover extends HttpServlet {
         
         Session session = HibernateUtil.getSessionFactory().openSession();
         
-        Criteria criteria =  session.createCriteria(Product.class);
+        Product_status active = (Product_status)session.get(Product_status.class, 1);
         
+        Criteria criteria =  session.createCriteria(Product.class);
         criteria.add(Restrictions.not(Restrictions.eq("owner", requestUser)));
+        criteria.add(Restrictions.eq("status", active));
         
         if(!criteria.list().isEmpty()){
             

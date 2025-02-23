@@ -15,5 +15,7 @@
     <mapping class="entity.User"/>
     <mapping class="entity.User_Status"/>
     <mapping class="entity.Notified_Status"/>
+    <mapping class="entity.Product_status"/>
+    <mapping class="entity.Admin"/>
   </session-factory>
 </hibernate-configuration>

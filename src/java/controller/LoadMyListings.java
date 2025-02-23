@@ -9,6 +9,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import entity.Product;
+import entity.Product_status;
 import entity.Rentals;
 import entity.User;
 import java.io.IOException;
@@ -43,10 +44,12 @@ public class LoadMyListings extends HttpServlet {
         responseJson.addProperty("success", Boolean.FALSE);
 
         Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        Product_status active = (Product_status)session.get(Product_status.class, 1);
 
         Criteria criteriaProduct = session.createCriteria(Product.class);
-
         criteriaProduct.add(Restrictions.eq("owner", requestUser));
+        criteriaProduct.add(Restrictions.eq("status", active));
         
         JsonArray listingArray = new JsonArray();
 

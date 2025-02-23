@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import entity.Category;
 import entity.Product;
+import entity.Product_status;
 import entity.User;
 import java.io.File;
 import java.io.IOException;
@@ -50,50 +51,58 @@ public class AddListing extends HttpServlet {
 
         responseJson.addProperty("success", Boolean.FALSE);
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
+        if (!owner.getLongitude().isEmpty() || !owner.getLongitude().isEmpty()) {
 
-        Product product = new Product();
-        product.setName(requestJson.get("name").getAsString());
-        product.setDescription(requestJson.get("description").getAsString());
-        product.setRent_per_day(requestJson.get("rent").getAsDouble());
-        product.setOwner(owner);
-        product.setCategory(category);
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Transaction transaction = session.beginTransaction();
 
-        try {
+            Product_status active = (Product_status) session.load(Product_status.class, 1);
 
-            session.save(product);
-            transaction.commit();
+            Product product = new Product();
+            product.setName(requestJson.get("name").getAsString());
+            product.setDescription(requestJson.get("description").getAsString());
+            product.setRent_per_day(requestJson.get("rent").getAsDouble());
+            product.setOwner(owner);
+            product.setStatus(active);
+            product.setCategory(category);
 
-            File productImageDir = new File(BASE_URL + File.separator + "product-images");
+            try {
 
-            if (!productImageDir.exists()) {
-                productImageDir.mkdir();
+                session.save(product);
+                transaction.commit();
+
+                File productImageDir = new File(BASE_URL + File.separator + "product-images");
+
+                if (!productImageDir.exists()) {
+                    productImageDir.mkdir();
+                }
+
+                Criteria criteria = session.createCriteria(Product.class);
+                criteria.addOrder(Order.desc("id"));
+
+                Product updatedProduct = (Product) criteria.list().get(0);
+
+                if (imagePart != null && imagePart.getName().equals("image") && imagePart.getSubmittedFileName() != null) {
+                    String fileName = "product_" + updatedProduct.getId() + ".png";
+                    InputStream inputStream = imagePart.getInputStream();
+                    File imgFile = new File(productImageDir, fileName);
+                    Files.copy(inputStream, imgFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                }
+
+                responseJson.addProperty("success", Boolean.TRUE);
+                responseJson.addProperty("message", "Listing Added Successfully!");
+
+            } catch (Exception e) {
+
+                transaction.rollback();
+                responseJson.addProperty("error", e.getMessage());
+                e.printStackTrace();
+
+            } finally {
+                session.close();
             }
-
-            Criteria criteria = session.createCriteria(Product.class);
-            criteria.addOrder(Order.desc("id"));
-
-            Product updatedProduct = (Product) criteria.list().get(0);
-
-            if (imagePart != null && imagePart.getName().equals("image") && imagePart.getSubmittedFileName() != null) {
-                String fileName = "product_" + updatedProduct.getId() + ".png";
-                InputStream inputStream = imagePart.getInputStream();
-                File imgFile = new File(productImageDir, fileName);
-                Files.copy(inputStream, imgFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            }
-
-            responseJson.addProperty("success", Boolean.TRUE);
-            responseJson.addProperty("message", "Listing Added Successfully!");
-
-        } catch (Exception e) {
-
-            transaction.rollback();
-            responseJson.addProperty("error", e.getMessage());
-            e.printStackTrace();
-
-        } finally {
-            session.close();
+        } else {
+            responseJson.addProperty("message", "Please Update Your Pickup Location!");
         }
 
         resp.setContentType("application/json");

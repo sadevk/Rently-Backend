@@ -42,6 +42,10 @@ public class Product implements Serializable{
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
+    
+    @ManyToOne
+    @JoinColumn(name = "product_status_id")
+    private Product_status status;
 
     public int getId() {
         return id;
@@ -89,5 +93,13 @@ public class Product implements Serializable{
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public Product_status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Product_status status) {
+        this.status = status;
     }
 }

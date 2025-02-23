@@ -3,30 +3,47 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Payments.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/AdminLoadProduct.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/model/HibernateUtil.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/web/admin/products.html</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/web/includes/leftbar.html</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/SignIn.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/ChangeProductStatus.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadRental.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/web/admin/rentals.html</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Admin.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadMyListings.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/CheckForOngoingRentals.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadDiscover.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Notified_Status.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/web/assets/js/script.js</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/UpdateListing.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/web/admin/login.html</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/web/admin/product.html</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/AddListing.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/UpdateProfile.java</file>
-            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Payments.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/web/admin/users.html</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadCategories.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Product_status.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Category.java</file>
-            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/model/HibernateUtil.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/hibernate.cfg.xml</file>
-            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/SignIn.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/web/admin/orders.html</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/web/admin/index.html</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/nbproject/project.properties</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Product.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/Test.java</file>
-            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadRental.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/AdminLogin.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/PlaceOrder.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/AdminLoadProducts.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/SignUp.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/User_Status.java</file>
-            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadMyListings.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadHome.java</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/nbproject/project.xml</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/web/assets/css/style.css</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/User.java</file>
-            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/CheckForOngoingRentals.java</file>
+            <file>file:/Users/sadev_vr38/Developer/Rently/web/assets/css/icons.css</file>
             <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Rentals.java</file>
-            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/controller/LoadDiscover.java</file>
-            <file>file:/Users/sadev_vr38/Developer/Rently/src/java/entity/Notified_Status.java</file>
         </group>
     </open-files>
 </project-private>
