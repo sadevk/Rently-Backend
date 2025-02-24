@@ -51,7 +51,7 @@ public class AddListing extends HttpServlet {
 
         responseJson.addProperty("success", Boolean.FALSE);
 
-        if (!owner.getLongitude().isEmpty() || !owner.getLongitude().isEmpty()) {
+        if (owner.getLongitude() != null && owner.getLongitude() != null) {
 
             Session session = HibernateUtil.getSessionFactory().openSession();
             Transaction transaction = session.beginTransaction();
@@ -102,7 +102,7 @@ public class AddListing extends HttpServlet {
                 session.close();
             }
         } else {
-            responseJson.addProperty("message", "Please Update Your Pickup Location!");
+            responseJson.addProperty("message", "Please Update Your Pickup Location on Profile!");
         }
 
         resp.setContentType("application/json");

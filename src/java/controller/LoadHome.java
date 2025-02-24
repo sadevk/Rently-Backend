@@ -196,9 +196,10 @@ public class LoadHome extends HttpServlet {
             Calendar calendar = Calendar.getInstance();
 
             calendar.setTime(today);
-            calendar.add(Calendar.DAY_OF_MONTH, -7);
+            calendar.add(Calendar.DAY_OF_MONTH, -6);
 
             JsonArray chartArray = new JsonArray();
+            boolean allZero = true;
 
             for (int i = 0; i < 7; i++) {
                 Date currentDay = calendar.getTime();
@@ -237,6 +238,11 @@ public class LoadHome extends HttpServlet {
                     }
 
                 }
+                
+                if (totalAmount > 0) {
+        allZero = false; 
+    }
+
 
                 JsonObject income = new JsonObject();
                 income.addProperty("day", currentDayFormatted);
@@ -245,7 +251,7 @@ public class LoadHome extends HttpServlet {
                 chartArray.add(income);
             }
 
-            responseJson.add("chartData", chartArray);
+            responseJson.add("chartData", allZero ? new JsonArray() : chartArray);
 
             transaction.commit();
 
